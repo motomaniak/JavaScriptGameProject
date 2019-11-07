@@ -1,24 +1,22 @@
 class Player {
 	constructor(){
-		this.color = "#ff0000";
-		this.height = 100;
-  		this.jumping = true;
-  		this.velocity_x = 0;
-		this.velocity_y = 0;
-		this.width = 100;
-		this.x = 100;
-		this.y = 50;
-		this.prevX = 0
-		this.prevY = 0
+		this.height = 50
+  		this.jumping = true
+  		this.velocity_x = 0
+		this.velocity_y = 0
+		this.width = 50
+		this.x = 0
+		this.y = 300
 		this.movement = "idle-right"
 	}
 
 	jump(){
 		if(!this.jumping){
 			this.jumping = true
-			this.velocity_y -= 35
+			this.velocity_y -= 50
 		}
 
+		//This is for future moving and animating the sprite 
 		if(this.movement == "moving-left")
 			this.movement = "jumping-left"
 		else if(this.movement == "moving-right")
@@ -26,20 +24,16 @@ class Player {
 	}
 
 	moveLeft(){
-		this.movingLeft = true
-		this.velocity_x -= 8
+		this.velocity_x -= 7
 		this.movement = "moving-left"
 	}
 
 	moveRight(){
-		this.movingRight = true
-		this.velocity_x += 8
+		this.velocity_x += 7
 		this.movement = "moving-right"
 	}
 
 	update(){
-		this.prevX = this.x 
-		this.prevY = this.y
 		this.x += this.velocity_x
 		this.y += this.velocity_y
 	}

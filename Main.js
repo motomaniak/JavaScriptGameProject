@@ -1,10 +1,10 @@
 window.addEventListener("load", function(event) {
-
+	"use strict";
+	let columns = 16
 	let render = function() {
 		display.drawBackground()
-		display.drawMap(game.world.map, 16)
-    	display.drawPlayer(game.world.player.x, game.world.player.y, game.world.player.width, game.world.player.height, game.world.player.movement, game.world.player.leftIndex, game.world.player.rightIndex)
-    	
+		display.drawTileMap(game.world.map, columns)
+    	display.drawPlayer(game.world.player.x, game.world.player.y, game.world.player.width, game.world.player.height, game.world.player.movement)   	
     	display.render()
 	}
 
@@ -12,13 +12,11 @@ window.addEventListener("load", function(event) {
 
 	let update = function() {
 		if(controller.left.active){
-			game.world.player.moveLeft(game.world.player.leftIndex)
-			game.world.player.movingLeft = false
+			game.world.player.moveLeft()
 			controller.left.active = false
 		}
 		if(controller.right.active){
-			game.world.player.moveRight(game.world.player.rightIndex)
-			game.world.player.movingRight = false
+			game.world.player.moveRight()
 			controller.right.active = false
 		}
 		if(controller.up.active){
@@ -27,8 +25,9 @@ window.addEventListener("load", function(event) {
 		}
 		if(controller.q.active)
 			engine.stop()
-		if(controller.r.active)
-			engine.start()
+		if(controller.r.active){
+			location.reload(true)
+		}
 		
 		game.update()
 
@@ -46,11 +45,10 @@ window.addEventListener("load", function(event) {
 	let world = new World()
     /* The controller handles user input. */
     let controller = new Controller();
-
-    /* The display handles window resizing, as well as the on screen canvas. */
-    let display = new Display(document.querySelector("#ui-layer"), document.querySelector("#background-layer"));
-    /* The game will eventually hold our game logic. */
+    /* The game holds our game logic. */
     let game = new Game();
+    /* The display handles window resizing, as well as the on screen canvas. */
+    let display = new Display(document.querySelector("canvas"), game);
     /* The engine is where the above three sections can interact. */
     let engine = new GameEngine(1000/30, render, update);
 
