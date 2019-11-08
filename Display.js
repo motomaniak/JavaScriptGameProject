@@ -20,6 +20,12 @@ class Display {
 		this.buffer.drawImage(spriteImg, Math.floor(x), Math.floor(y), this.size, this.size)
   	}
 
+  	drawScore(score) {
+	    this.buffer.font = "30px Arial";
+	    this.buffer.fillStyle = "#0095DD";
+	    this.buffer.fillText("Score: "+ score, 20, 100);
+	}
+
 	render(){
 		this.context.beginPath()
 		this.context.drawImage(this.buffer.canvas, 0, 0, this.buffer.canvas.width, this.buffer.canvas.height, 0, 0, this.context.canvas.width, this.context.canvas.height)

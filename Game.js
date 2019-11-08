@@ -24,7 +24,8 @@ class Game {
 			player: new Player(),
 			height: 800,
 			width: 800,
-			collideplayerObject: function(playerObject){
+			score: 0,
+			collidePlayerObject: function(playerObject){
 				//Making sure our player stays in the bounds of the game/canvas
 				if (playerObject.x < 0){ 
 					playerObject.x = 0
@@ -86,6 +87,7 @@ class Game {
       					}
 
       					if(tileObject.action == "collect"){
+      						this.score += 1
       						this.map[tileObject.index] = 0
       						direction = ""
       						playerObject.jumping = true
@@ -115,7 +117,7 @@ class Game {
 				this.player.update()
 				this.player.velocity_x *= this.friction
 				this.player.velocity_y *= this.friction
-				this.collideplayerObject(this.player)
+				this.collidePlayerObject(this.player)
 			}
 
 		}

@@ -5,6 +5,7 @@ window.addEventListener("load", function(event) {
 		display.drawBackground()
 		display.drawTileMap(game.world.map, columns)
     	display.drawPlayer(game.world.player.x, game.world.player.y, game.world.player.width, game.world.player.height, game.world.player.movement)   	
+    	display.drawScore(game.world.score)
     	display.render()
 	}
 
