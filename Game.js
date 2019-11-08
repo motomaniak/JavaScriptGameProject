@@ -19,8 +19,8 @@ class Game {
 			2,2,2,3,17,17,4,5,5,5,5,10,11,3,17,17,
 			5,5,5,6,18,18,4,5,5,5,5,5,5,6,18,18],
 			collisionTileMap: [],
-			friction: .9,
-			gravity: 3,
+			friction: .8,
+			gravity: 2,
 			player: new Player(),
 			height: 800,
 			width: 800,
@@ -49,9 +49,9 @@ class Game {
       			/*Doing collision check for the player agaist all items 
 				 *that it can't travel through using vector collision detection
 				 *
-				 *
-				 *
-				 *
+				 *Factoring for the distance between the widths of the objects and their middle
+				 *It checks to see if it was the X or Y vector that collided and then determines if 
+				 *it was top or bottom (Y vetor) or left of right (X vector) then taking approriate action 
       			 */
       			for(let tileObject of this.collisionTileMap){
       				let vectorX = (playerObject.x + (playerObject.width/2)) - (tileObject.x + (tileObject.width/2))
@@ -107,12 +107,13 @@ class Game {
       					playerObject.velocity_y = 0
       					playerObject.jumping = false
       				}else if(direction == "top"){
-      					playerObject.velocity_y *= -1
+      					playerObject.velocity_y *= -.5
       				}
       			}
 			},
 
 			update: function() {
+				//Player physics
 				this.player.velocity_y += this.gravity
 				this.player.update()
 				this.player.velocity_x *= this.friction

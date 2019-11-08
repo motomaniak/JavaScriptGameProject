@@ -13,7 +13,7 @@ class Player {
 	jump(){
 		if(!this.jumping){
 			this.jumping = true
-			this.velocity_y -= 50
+			this.velocity_y -= 55
 		}
 
 		//This is for future moving and animating the sprite 
@@ -24,12 +24,12 @@ class Player {
 	}
 
 	moveLeft(){
-		this.velocity_x -= 7
+		this.velocity_x -= 5
 		this.movement = "moving-left"
 	}
 
 	moveRight(){
-		this.velocity_x += 7
+		this.velocity_x += 5
 		this.movement = "moving-right"
 	}
 

@@ -51,7 +51,7 @@ window.addEventListener("load", function(event) {
     /* The display handles window resizing, as well as the on screen canvas. */
     let display = new Display(document.querySelector("canvas"), game);
     /* The engine is where the above three sections can interact. */
-    let engine = new GameEngine(1000/30, render, update);
+    let engine = new GameEngine(1000/30, render, update, display);
 
     display.buffer.canvas.height = game.world.height
     display.buffer.canvas.width = game.world.width
@@ -61,6 +61,11 @@ window.addEventListener("load", function(event) {
     window.addEventListener("keyup",   keyEvent);
 
     resize();
+    alert("Use the arrow keys to collect as \nmany mushrooms as you can\n and make it to the exit \n before the timer hits 90 seconds")
+    window.setTimeout(()=> {
+    	alert("Time ran out! Game Over")
+    	location.reload()
+    }, 90000)
     engine.start();
 
 });
