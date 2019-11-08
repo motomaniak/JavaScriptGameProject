@@ -8,7 +8,7 @@ class Display {
 		this.game = game
 		this.size = 50 
 		
-		for(let i = 1; i <= 22; i++){
+		for(let i = 1; i <= 25; i++){
 		 	this.tileImgArray[i] = new Image()
 			this.tileImgArray[i].src = "images/Tiles/"+ i + ".png"
 		}
@@ -22,8 +22,8 @@ class Display {
 
   	drawScore(score) {
 	    this.buffer.font = "30px Arial";
-	    this.buffer.fillStyle = "#0095DD";
-	    this.buffer.fillText("Score: "+ score, 20, 100);
+	    this.buffer.fillStyle = "purple";
+	    this.buffer.fillText("Score: "+ score, 20, 30);
 	}
 
 	render(){
@@ -45,7 +45,10 @@ class Display {
 					this.game.world.collisionTileMap.push({x: dx, y: dy, height: this.size, width: this.size, action: "die"})
 				if(map[index] == 22)
 					this.game.world.collisionTileMap.push({x: dx, y: dy, height: this.size, width: this.size, action: "win"})
-				this.buffer.drawImage(this.tileImgArray[map[index]], dx, dy, this.size, this.size)
+				if(map[index] == 24)
+					this.buffer.drawImage(this.tileImgArray[map[index]], dx, dy, this.size * 2, this.size * 5)
+				else
+					this.buffer.drawImage(this.tileImgArray[map[index]], dx, dy, this.size, this.size)
 			}
 		}
 	}
