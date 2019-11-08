@@ -24,12 +24,12 @@ class Player {
 	}
 
 	moveLeft(){
-		this.velocity_x -= 5
+		this.velocity_x -= 7
 		this.movement = "moving-left"
 	}
 
 	moveRight(){
-		this.velocity_x += 5
+		this.velocity_x += 7
 		this.movement = "moving-right"
 	}
 
